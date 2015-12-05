@@ -12,6 +12,9 @@
         },
         "phonegap-nfc": {
             "PACKAGE_NAME": "com.example.nfcreader"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.example.nfcreader"
         }
     },
     "dependent_plugins": {}

@@ -34,6 +34,7 @@ var app = {
 */
    onNfc: function(nfcEvent) {
       var tagID = nfc.bytesToHexString(nfcEvent.tag.id);
+      alert(tagID);
    },
 
 /*
