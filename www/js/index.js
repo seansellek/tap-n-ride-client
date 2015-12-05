@@ -1,6 +1,6 @@
 var app = {
     domain: "https://quiet-earth-4041.herokuapp.com",
-    domainAnalytics: "glacial-eyrie-9781.herokuapp.com/".
+    domainAnalytics: "https://glacial-eyrie-9781.herokuapp.com/",
     // domain:  'http://localhost:3000',
     currentTrip: false,
     currentUser: false,
