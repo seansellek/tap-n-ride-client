@@ -1,5 +1,6 @@
 var app = {
     domain: "https://quiet-earth-4041.herokuapp.com",
+    // domain:  'http://localhost:3000',
     currentTrip: false,
     currentUser: false,
 /*
@@ -72,12 +73,11 @@ var app = {
    },
 
    updateTrip: function(stationId) {
-            var data = '{"station_id": '+stationId.toString()+'}';
-            alert("Updating Trip " + data);
+            alert("Updating Trip" + JSON.stringify({"station_id":  stationId}));
             $.ajax({
-            url: app.domain + "/trips?auth=" + app.currentUser.auth_token,
+            url: app.domain + "/trips/" + app.currentTrip.toString() + "?auth=" + app.currentUser.auth_token,
             type: 'PATCH',
-            data: data,
+            data: {"station_id":  stationId},
             success: function(data) {
                 alert("Hope you had a good trip! " + JSON.stringify(data));
                 app.currentTrip = false;
@@ -90,17 +90,15 @@ var app = {
    },
 
    createTrip: function(stationId) {
-            stationId = '370700003d44fa';
-        var data = '{station_id: '+stationId+'}';
-        alert("Updating Trip " + data);
-        alert("Creating Trip");
+        // stationId = '370700003d44fa';
+        alert("Creating Trip" + JSON.stringify({"station_id":  stationId}));
         $.ajax({
             url: app.domain + "/trips?auth=" + app.currentUser.auth_token,
             type: 'POST',
-            data: data,
+            data: {"station_id":  stationId},
             success: function(data) {
                 alert("Hava a nice trip! " + JSON.stringify(data));
-                app.currentTrip = true;
+                app.currentTrip = data.id;
             },
             error: function(jqXHR, textStatus, errorThrown){
                 alert("status: " + textStatus);

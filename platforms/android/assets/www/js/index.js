@@ -1,6 +1,8 @@
 var app = {
     domain: "https://quiet-earth-4041.herokuapp.com",
+    // domain:  'http://localhost:3000',
     currentTrip: false,
+    currentUser: false,
 /*
    Application constructor
 */
@@ -71,11 +73,11 @@ var app = {
    },
 
    updateTrip: function(stationId) {
-            alert("Updating Trip");
+            alert("Updating Trip" + JSON.stringify({"station_id":  stationId}));
             $.ajax({
-            url: app.domain + "/trips&auth=" + app.currentUser.auth_token,
+            url: app.domain + "/trips/" + app.currentTrip.toString() + "?auth=" + app.currentUser.auth_token,
             type: 'PATCH',
-            data: JSON.stringify({"station_id": stationID}),
+            data: {"station_id":  stationId},
             success: function(data) {
                 alert("Hope you had a good trip! " + JSON.stringify(data));
                 app.currentTrip = false;
@@ -88,14 +90,15 @@ var app = {
    },
 
    createTrip: function(stationId) {
-        alert("Creating Trip");
+        // stationId = '370700003d44fa';
+        alert("Creating Trip" + JSON.stringify({"station_id":  stationId}));
         $.ajax({
-            url: app.domain + "/trips&auth=" + app.currentUser.auth_token,
+            url: app.domain + "/trips?auth=" + app.currentUser.auth_token,
             type: 'POST',
-            data: JSON.stringify({"station_id": stationID}),
+            data: {"station_id":  stationId},
             success: function(data) {
                 alert("Hava a nice trip! " + JSON.stringify(data));
-                app.currentTrip = true;
+                app.currentTrip = data.id;
             },
             error: function(jqXHR, textStatus, errorThrown){
                 alert("status: " + textStatus);
@@ -138,6 +141,6 @@ var app = {
    }
 };  
 
-$("#trigger-scan").click(app.createTrip("370700003d44fa"));
+$("#trigger-scan").click(app.createTrip);
 $("#register-button").click(app.register); 
 $("#login-button").click(app.tryLogin);  // end of app
