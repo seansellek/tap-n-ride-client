@@ -28,12 +28,14 @@ var app = {
                JSON.stringify(error));
          }
       );
+
    },
    /*
    displays tag ID from @nfcEvent in message div:
 */
    onNfc: function(nfcEvent) {
       var tagID = nfc.bytesToHexString(nfcEvent.tag.id);
+      requests();
    },
 
 /*
