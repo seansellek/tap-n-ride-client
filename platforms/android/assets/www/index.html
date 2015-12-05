@@ -13,9 +13,29 @@
     <link rel="stylesheet" href="css/style.css">
    </head>
    <body>
-        <div data-role='page'>
+        <div data-role='page' id="landing">
             <img src="img/tap-n-ride-logo.png" alt="logo">
             <h1>Tap-n-Ride</h1>
+            <div class="padded">
+                <a href="#login" class="ui-btn">Login</a>
+                <a href="#register" class="ui-btn">Register</a>
+            </div>
+        </div>
+        <div data-role='page' id='login'>
+            <div class='padded'>
+                <input type="text" name="email" class='padded' id="login-email" placeholder="Email" value="">
+                <input type="password" name="password" class='padded' id="login-possword" placeholder="Password" value="">
+                <a href="" id="login-button" class="ui-btn">Login</a>
+            </div>
+        </div>
+        <div data-role='page' id='register'>
+            <div class='padded'>
+                <input type="text" name="first-name" id="register-first-name" placeholder="First Name" value="">
+                <input type="text" name="last-name" id="register-last-name" placeholder="Last Name" value="">
+                <input type="text" name="email" class='padded' id="register-email" placeholder="Email" value="">
+                <input type="password" name="password" class='padded' id="register-possword" placeholder="Password" value="">
+                <a href="" id="register-button" class="ui-btn">Register</a>
+            </div>
         </div>
       <script type="text/javascript" src="cordova.js"></script>
       <script type="text/javascript" src="js/index.js"></script>
