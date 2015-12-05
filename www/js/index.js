@@ -11,17 +11,16 @@ var app = {
    bind any events that are required on startup to listeners:
 */
    bindEvents: function() {
-      document.addEventListener('deviceready', this.onDeviceReady, false);
+      
    },
 /*
    this runs when the device is ready for user interaction:
 */
-   onDeviceReady: function() {
-
+   beginListening: function() {
       nfc.addTagDiscoveredListener(
          app.onNfc,             // tag successfully scanned
          function (status) {    // listener successfully initialized
-            app.display("Tap a tag to read its id number.");
+            app.display("listening");
          },
          function (error) {     // listener fails to initialize
             app.display("NFC reader failed to initialize " +
@@ -29,22 +28,46 @@ var app = {
          }
       );
    },
+   login: function(user) {
+        app.current_user = user;
+        $.mobile.navigate('#landing-logged-in');
+        $('.main-message').prepend('<h2>Welcome, ' + app.current_user.email + '!</h2>');
+        app.beginListening();
+   },
+
+   register: function() {
+        myJSObject = {user:{ email: $('#register-email').val(), password: $('#register-password').val()}};
+        alert(JSON.stringify(myJSObject));
+        $.ajax({
+            url: "https://quiet-earth-4041.herokuapp.com/users",
+            type: 'POST',
+        data : JSON.stringify(myJSObject),
+        contentType : 'application/json',
+        success: function(data) {
+            app.login(data);
+                alert("posted: " + JSON.stringify(data));
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                alert("status: " + textStatus);
+                alert("error: " + errorThrown);
+            }
+        });
+   },
+
+   
    /*
    displays tag ID from @nfcEvent in message div:
 */
    onNfc: function(nfcEvent) {
       var tagID = nfc.bytesToHexString(nfcEvent.tag.id);
-      requests();
+      app.display(tagID);
    },
 
 /*
    appends @message to the message div:
 */
    display: function(message) {
-      var label = document.createTextNode(message),
-         lineBreak = document.createElement("br");
-      messageDiv.appendChild(lineBreak);         // add a line break
-      messageDiv.appendChild(label);             // add the text
+      alert(message);        // add the text
    },
 /*
    clears the message div:
@@ -52,4 +75,6 @@ var app = {
    clear: function() {
        messageDiv.innerHTML = "";
    }
-};     // end of app
+};  
+
+$("#register-button").click(app.register);   // end of app

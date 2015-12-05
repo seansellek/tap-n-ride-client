@@ -1,35 +1,31 @@
-// function requests() {
-
-// 	function get() {
-		
-// 	}
-
-// 	function post() {
-// 		
-// 	}
-// 	post();
-
-// 	function patch() {
-
-// 	}
-
-// 	function delete() {
-
-// 	}
-
-// }
 $(function() {
-	$("#register-button").click(function(){
-		var url = "https://quiet-earth-4041.herokuapp.com/users";
-		myJSObject = {user:{ email: "user@example.com", password:"password",password_conformation:"password",first_name:"User1_first", last_name:"User1_last",phone:"1234567890"}}
+	current_user = undefined;
+	$("#register-button").click(register);
+
+
+
+	function register() {
+		myJSObject = {user:{ email: $('#register-email').val(), password: $('#register-password').val()}};
 		alert(JSON.stringify(myJSObject));
-		$.post(url, 
-		{
-		    data : JSON.stringify(myJSObject),
-		    contentType : 'application/json',
-		    type : 'POST'
-		}, function() {
-			alert("posted");
+		$.ajax({
+			url: "https://quiet-earth-4041.herokuapp.com/users",
+			type: 'POST',
+	    data : JSON.stringify(myJSObject),
+	    contentType : 'application/json',
+	    success: function(data) {
+	    	login(data);
+				alert("posted: " + JSON.stringify(data));
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				alert("status: " + textStatus);
+				alert("error: " + errorThrown);
+			}
 		});
-	});
+	}
+
+	function login(user) {
+		current_user = user;
+		$.mobile.navigate('#landing-logged-in');
+		$('.main-message').prepend('<h2>Welcome, ' + current_user.email + '!</h2>');
+	}
 });

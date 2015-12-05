@@ -90,4 +90,5 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="https://obscure-wildwood-1281.herokuapp.com/*" />
 </widget>
