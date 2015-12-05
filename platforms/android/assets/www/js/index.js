@@ -79,7 +79,7 @@ var app = {
             type: 'PATCH',
             data: {"station_id":  stationId},
             success: function(data) {
-                alert("Hope you had a good trip! " + JSON.stringify(data));
+                alert("Exiting " + data.station.name + ". Hope you had a good trip!");
                 app.currentTrip = false;
             },
             error: function(jqXHR, textStatus, errorThrown){
@@ -90,14 +90,13 @@ var app = {
    },
 
    createTrip: function(stationId) {
-        // stationId = '370700003d44fa';
         alert("Creating Trip" + JSON.stringify({"station_id":  stationId}));
         $.ajax({
             url: app.domain + "/trips?auth=" + app.currentUser.auth_token,
             type: 'POST',
             data: {"station_id":  stationId},
             success: function(data) {
-                alert("Hava a nice trip! " + JSON.stringify(data));
+                alert("Entering " + data.station.name + ". Hava a nice trip!");
                 app.currentTrip = data.id;
             },
             error: function(jqXHR, textStatus, errorThrown){
@@ -141,6 +140,5 @@ var app = {
    }
 };  
 
-$("#trigger-scan").click(app.createTrip);
 $("#register-button").click(app.register); 
 $("#login-button").click(app.tryLogin);  // end of app
