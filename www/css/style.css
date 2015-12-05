@@ -1,0 +1,21 @@
+body {
+  background-color: #27AE60;
+}
+
+*::-webkit-input-placeholder {
+  color: white;
+}
+
+h1 {
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;
+}
+#landing img {
+  margin: 0 auto;
+  display: block;
+}
+.padded {
+  width: 60%;
+  margin: 0 auto;
+}

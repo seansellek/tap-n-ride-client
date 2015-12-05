@@ -2,16 +2,45 @@
 
 <html>
    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>NFC tag ID reader</title>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500italic,500,700,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="themes/tap-n-ride.min.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css">
+    <link rel="stylesheet" href="css/style.css">
    </head>
-   <body style="font-size: 1.5em">
-      <div class="app">
-         <div id="messageDiv"></div>
+   <body>
+        <div data-role='page' id="landing">
+            <img src="img/tap-n-ride-logo.png" alt="logo">
+            <h1>Tap-n-Ride</h1>
+            <div class="padded">
+                <a href="#login" class="ui-btn">Login</a>
+                <a href="#register" class="ui-btn">Register</a>
+            </div>
+        </div>
+        <div data-role='page' id='login'>
+            <div class='padded'>
+                <input type="text" name="email" class='padded' id="login-email" placeholder="Email" value="">
+                <input type="password" name="password" class='padded' id="login-possword" placeholder="Password" value="">
+                <a href="" id="login-button" class="ui-btn">Login</a>
+            </div>
+        </div>
+        <div data-role='page' id='register'>
+            <div class='padded'>
+                <input type="text" name="first-name" id="register-first-name" placeholder="First Name" value="">
+                <input type="text" name="last-name" id="register-last-name" placeholder="Last Name" value="">
+                <input type="text" name="email" class='padded' id="register-email" placeholder="Email" value="">
+                <input type="password" name="password" class='padded' id="register-possword" placeholder="Password" value="">
+                <a href="" id="register-button" class="ui-btn">Register</a>
+            </div>
       </div>
-      <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-      <script type="text/javascript" src="js/requests.js"></script>
       <script type="text/javascript" src="cordova.js"></script>
       <script type="text/javascript" src="js/index.js"></script>
+      <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
       <script type="text/javascript">
        app.initialize();
      </script>
