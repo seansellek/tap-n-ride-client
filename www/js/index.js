@@ -1,5 +1,6 @@
 var app = {
     domain: "https://quiet-earth-4041.herokuapp.com",
+    domainAnalytics: "glacial-eyrie-9781.herokuapp.com/".
     // domain:  'http://localhost:3000',
     currentTrip: false,
     currentUser: false,
@@ -102,6 +103,17 @@ var app = {
             error: function(jqXHR, textStatus, errorThrown){
                 alert("status: " + textStatus);
                 alert("error: " + errorThrown);
+            }
+        });
+        $.ajax({
+            url: app.domainAnalytics + "/index",
+            type: "POST",
+            data: {"data":"hello"},
+            success: function(){
+               alert("sent");
+            },
+            error: function(){
+               alert("error")
             }
         });
    },
