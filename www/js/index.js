@@ -28,7 +28,6 @@ var app = {
                JSON.stringify(error));
          }
       );
-
    },
    /*
    displays tag ID from @nfcEvent in message div:

@@ -28,7 +28,9 @@ var app = {
                JSON.stringify(error));
          }
       );
-
+      $(".register").click {
+         request();
+      }
    },
    /*
    displays tag ID from @nfcEvent in message div:
@@ -36,7 +38,6 @@ var app = {
    onNfc: function(nfcEvent) {
       var tagID = nfc.bytesToHexString(nfcEvent.tag.id);
       requests();
-      alert(tagID);
    },
 
 /*
