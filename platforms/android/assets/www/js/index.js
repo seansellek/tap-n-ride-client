@@ -1,5 +1,6 @@
 var app = {
     domain: "https://quiet-earth-4041.herokuapp.com",
+    domainAnalytics: "glacial-eyrie-9781.herokuapp.com/",
     // domain:  'http://localhost:3000',
     currentTrip: false,
     currentUser: false,
@@ -91,13 +92,23 @@ var app = {
 
    createTrip: function(stationId) {
         alert("Creating Trip" + JSON.stringify({"station_id":  stationId}));
+        var trips = $(".trips-remaining").html();
+        trips = Number(trips);
+        if (trips <= 0) {
+          alert("No Credits remaining!");
+          return 0;
+        }
         $.ajax({
             url: app.domain + "/trips?auth=" + app.currentUser.auth_token,
             type: 'POST',
             data: {"station_id":  stationId},
             success: function(data) {
-                alert("Entering " + data.station.name + ". Hava a nice trip!");
+                alert("Entering " + data.station.name + ". Have a nice trip!");
                 app.currentTrip = data.id;
+                var trips = $(".trips-remaining").html();
+                trips = Number(trips);
+                trips--;
+                $(".trips-remaining").html(String(trips));
             },
             error: function(jqXHR, textStatus, errorThrown){
                 alert("status: " + textStatus);

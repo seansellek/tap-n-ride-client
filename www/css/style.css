@@ -27,3 +27,8 @@ h1 {
 #login .padded, #register .padded {
   margin-top: 20%;
 }
+.trips-remaining {
+  font-size: 72px;
+  line-height: 50px;
+  margin-bottom: 5px;
+}
